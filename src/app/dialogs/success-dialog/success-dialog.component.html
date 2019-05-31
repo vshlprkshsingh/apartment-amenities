@@ -1,0 +1,18 @@
+<div *ngIf="!slotsAlreadyBooked">
+  <div class="text">
+    You booking has been confirmed.<br><br>
+    Please pay the amount of <b>Rs.{{data.cost}}</b> when you visit the facility.
+  </div>
+  <div class="button">
+    <button mat-stroked-button color="primary" (click)="close()">OK</button>
+  </div>
+</div>
+<div *ngIf="slotsAlreadyBooked">
+  <div class="text">
+    Selected slots have already been booked.<br><br>
+    Please check bookings to know about available slots.
+  </div>
+  <div class="button">
+    <button mat-stroked-button color="primary" (click)="close()">OK</button>
+  </div>
+</div>

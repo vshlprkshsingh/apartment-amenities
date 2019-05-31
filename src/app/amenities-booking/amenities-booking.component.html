@@ -1,0 +1,40 @@
+<div class="amenity">
+  <h3>Book Amenity</h3>
+  <div class="amenity-selection" *ngFor="let amenity of amenitiesCollection">
+    <div class="amenity-name">{{amenity.name}}</div>
+    <div class="select-date">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="amenity.date"
+        (ngModelChange)="clearData('date')" [min]="today">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </div>
+    <div class="select-time">
+      <mat-select placeholder="Start Time" [(ngModel)]="amenity.start_time" (ngModelChange)="clearData('st')">
+        <mat-option *ngFor="let time of timeSlots" [value]="time"
+          [disabled]="checkToDisableStartTime(amenity.id, amenity.date, time)">{{time | convert24hrsTo12hrs}}
+        </mat-option>
+      </mat-select>
+    </div>
+    <div class=" select-time">
+      <mat-select placeholder="End Time" [(ngModel)]="amenity.end_time">
+        <mat-option *ngFor="let time of timeSlots" [value]="time"
+          [disabled]="(time <= amenity.start_time) || checkToDisableEndTime(amenity.id, amenity.date, time)">
+          {{time | convert24hrsTo12hrs}}
+        </mat-option>
+      </mat-select>
+    </div>
+    <div>
+      <button class="" mat-stroked-button color="primary" (click)="addBooking(amenity)">Book</button>
+    </div>
+  </div>
+</div>
+<div class="bookings" *ngIf="bookingCollection.length > 0">
+  <h3>Bookings</h3>
+  <div class="booking-section" *ngFor="let booking of bookingCollection">
+    <ul>
+      <li>{{booking.name}} has been booked on {{booking.date | date: 'EEEE MMM d, yyyy'}} from
+        {{booking.start_time | convert24hrsTo12hrs}} to
+        {{booking.end_time | convert24hrsTo12hrs}}</li>
+    </ul>
+  </div>
+</div>
