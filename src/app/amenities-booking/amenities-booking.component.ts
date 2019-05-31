@@ -38,11 +38,11 @@ export class AmenitiesBookingComponent implements OnInit {
         let allSt = [];
         let allEt = [];
         allSt = _.filter(this.bookingCollection, (el) => {
-          if (el.id == bookingFormData.value.id && parseInt(el.start_time) >= parseInt(bookingFormData.value.start_time))
+          if (el.id == bookingFormData.value.id && el.date == bookingFormData.value.date && parseInt(el.start_time) >= parseInt(bookingFormData.value.start_time))
             return el;
         });
         allEt = _.filter(this.bookingCollection, (el) => {
-          if (el.id == bookingFormData.value.id && parseInt(el.end_time) <= parseInt(bookingFormData.value.end_time))
+          if (el.id == bookingFormData.value.id && el.date == bookingFormData.value.date && parseInt(el.end_time) <= parseInt(bookingFormData.value.end_time))
             return el;
         });
         if (allSt.length > 0 && allEt.length > 0) {
