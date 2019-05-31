@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, AbstractControl, FormArray } from '@angular/forms';
-import { MatDialog, MatSidenavContainer } from '@angular/material';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import * as _ from 'lodash';
 
 import { AmenityService } from '../services/amenity.service';
