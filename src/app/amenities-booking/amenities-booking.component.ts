@@ -27,6 +27,9 @@ export class AmenitiesBookingComponent implements OnInit {
     this.generateTimeSlots();
   }
 
+  /**
+   * function to add booking
+   */
   addBooking(amenity): void {
     let bookingFormData: FormGroup = this.createBooking(amenity);
 
@@ -57,10 +60,13 @@ export class AmenitiesBookingComponent implements OnInit {
       console.log(bookingFormData);
       this.openDialog(bookingFormData.value);
     } else {
-      alert('Please fill in form details');
+      alert('Please fill in form details.');
     }
   }
 
+  /**
+ * function to create booking data
+ */
   createBooking(amenity): FormGroup {
 
     let cost = this.getCost(amenity);
@@ -84,6 +90,9 @@ export class AmenitiesBookingComponent implements OnInit {
     }
   }
 
+  /**
+ * function to find cost of booking
+ */
   private getCost(amenity): number {
     let st = parseInt(amenity.start_time);
     let et = parseInt(amenity.end_time);
@@ -104,6 +113,9 @@ export class AmenitiesBookingComponent implements OnInit {
     return null;
   }
 
+  /**
+ * function to generate start and end time slots
+ */
   generateTimeSlots() {
     this.timeSlots = [];
     for (let i = 10; i <= 22; i++) {
@@ -112,6 +124,9 @@ export class AmenitiesBookingComponent implements OnInit {
     }
   }
 
+  /**
+ * function to disable booked start time
+ */
   checkToDisableStartTime(id, date, time): boolean {
     if (date != "") {
       if (this.bookingCollection.length > 0) {
@@ -126,6 +141,9 @@ export class AmenitiesBookingComponent implements OnInit {
     }
   }
 
+  /**
+  * function to disable booked end time
+  */
   checkToDisableEndTime(id, date, time): boolean {
     if (date != "") {
       if (this.bookingCollection.length > 0) {
@@ -140,6 +158,9 @@ export class AmenitiesBookingComponent implements OnInit {
     }
   }
 
+  /**
+  * function to open modals
+  */
   openDialog(bookingData) {
     const dialogRef = this._dialog.open(SuccessDialogComponent, {
       data: bookingData
@@ -148,6 +169,9 @@ export class AmenitiesBookingComponent implements OnInit {
     });
   }
 
+  /**
+  * function to clear filled form
+  */
   clearData(type) {
     switch (type) {
       case 'date':
